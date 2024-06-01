@@ -5,6 +5,7 @@ $ git init
 
 # Проверить состояние репозитория:
 $ git status
+$ git status --ignored # появляется дополнительный раздел Ignored files
 
 # Подготовить файлы к сохранению (добавить в staged):
 $ git add <file>
@@ -39,6 +40,11 @@ $ git restore <file>
 
 # Откатить коммит (осторожно, откатить откат невозможно): 
 $ git reset --hard <commit hash> # в <commit hash> указывается, куда нужно откатить
+
+# Посмотреть изменения в файлах:
+$ git diff
+$ git diff --staged # показывает изменения в staged-файлах
+$ git diff <commit hash A> <commit hash B> # что изменилось с A до B
 ```
 
 ## Статусы untracked/tracked, staged и modified
@@ -75,3 +81,49 @@ Git сообщит об этом с помощью статуса modified: фа
 1. Снова добавили в staging area с помощью ```git add```. Состояния: staged (+ tracked).
 1. Сделали коммит. Состояния: tracked.
 1. Повторили пункты 4−7 много-много раз.
+
+
+## .gitignore
+
+```bash
+# игнорирование файла file.txt
+file.txt 
+
+# игнорировать все файлы, которые заканчиваются на .jpeg
+*.jpeg
+
+# но только не мем с Doge
+!doge.jpeg 
+
+# игнорировать все файлы "tmp" во всех подпапках папки docs
+docs/*/tmp
+
+# странное, но возможное правило
+# "игнорировать все файлы"
+* 
+
+# игнорировать file<один символ>.txt (напр, file1.txt, но не file12.txt) 
+file?.txt 
+
+# игнорировать файлы file0.txt, file1.txt и file2.txt
+# при этом не игнорировать file3.txt, file4.txt, ...
+file[0-2].txt 
+
+# игнорировать todo.txt в корне репозитория
+/todo.txt
+
+# для сравнения: spam.txt будет игнорироваться во всех папках
+spam.txt 
+
+# игнорировать папку build (но не файл build)
+build/
+
+# игнорировать файлы "docs/current/tmp", "docs/old/tmp",
+# а также "docs/old/saved/a/b/c/d/tmp"
+# и даже "docs/tmp", потому что ноль вложенных папок тоже подходит
+docs/**/tmp
+
+# игнорировать только "docs/current/tmp" и "docs/old/tmp"
+# файл "docs/old/saved/a/b/c/d/tmp" не попадает в правило
+docs/*/tmp 
+```
