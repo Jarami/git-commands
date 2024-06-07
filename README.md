@@ -45,6 +45,16 @@ $ git reset --hard <commit hash> # в <commit hash> указывается, ку
 $ git diff
 $ git diff --staged # показывает изменения в staged-файлах
 $ git diff <commit hash A> <commit hash B> # что изменилось с A до B
+$ git diff <название_ветки1> <название_ветки2>
+$ git diff HEAD~1 HEAD # разница между предыдущим и текущим коммитом
+
+# Ветки
+$ git branch # посмотреть какие ветки есть и какая текущая
+$ git branch <название_ветки> # создать ветку
+$ git checkout <название_ветки> # переключиться на ветку
+$ git checkout -b <название_ветки> # создать ветку и сразу переключиться на нее
+$ git merge <название_ветки> # слить ветку <название_ветки> с текущей
+$ git branch -D <название_ветки> # удалить ветку
 ```
 
 ## Статусы untracked/tracked, staged и modified
